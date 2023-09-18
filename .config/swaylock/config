@@ -1,0 +1,18 @@
+ignore-empty-password
+daemonize
+font=JetBrains Mono Nerd Font
+
+clock
+timestr=%H:%M:%S
+datestr=%d. %b %Y
+
+image=~/Pictures/wallpapers/two-moons.png
+
+effect-blur=10x2
+
+show-failed-attempts
+
+indicator-radius=150
+indicator-thickness=20
+indicator-idle-visible
+indicator-caps-lock
