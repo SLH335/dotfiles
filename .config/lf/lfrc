@@ -4,19 +4,12 @@ set shell sh
 set shellopts '-eu'
 
 set previewer ~/.config/lf/preview.sh
-set sixel true
+set sixel
 set drawbox
 set icons
 set ignorecase
 
 ### Custom Functions ###
-
-cmd open &{{
-	case $(file --mime-type "$f" -bL) in
-		text/*|application/json) $EDITOR "$f";;
-		*) xdg-open "$f" &> /dev/null ;;
-	esac
-}}
 
 cmd mkdir %{{
 	printf "Create Directory: "
@@ -34,14 +27,6 @@ cmd mkfile %{{
 	lf -remote "send $id clear"
 }}
 
-cmd trashf ${{
-	for asdf in $fx; do
-		echo $asdf
-	done
-	read test
-	#trash-put $fx
-}}
-
 cmd trash &{{
    files=$(printf "$fx" | tr '\n' ';')
    failed=0
@@ -50,8 +35,6 @@ cmd trash &{{
       # extract the substring from start of string up to delimiter.
       # this is the first "element" of the string.
       file=${files%%;*}
-      #lf -remote "send $id echo Moving $file to trash"
-      #lf -remote "send $id unselect"
 
       trash-put "$(basename "$file")"
       # if there's only one element left, set `files` to an empty string.
@@ -145,6 +128,7 @@ map DD trash
 map D<delete> delete
 map u $pwd | gdu
 map O open_with
+map R reload
 
 # Archive Mappings
 map au extract
