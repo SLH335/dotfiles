@@ -4,7 +4,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-export EDITOR="helix"
+export EDITOR="nvim"
 
 # ZSH options
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -42,7 +42,6 @@ fi
 
 # Aliases
 alias hx="helix"
-alias nvim="helix"
 alias vim="nvim"
 alias vi="nvim"
 
