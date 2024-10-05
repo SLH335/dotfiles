@@ -1,6 +1,6 @@
 export EDITOR=nvim
 
-# Clean home directory
+# XDG base directories
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -10,8 +10,9 @@ export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
+setopt autocd
 
-
+# Clean home directory
 export GOPATH="$XDG_DATA_HOME/go"
 export GOMODCACHE="$XDG_CACHE_HOME/go/mod"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
@@ -27,39 +28,20 @@ LS_COLORS=$LS_COLORS:'ow=1;34:' ; export LS_COLORS
 export PATH="$GOPATH/bin:$PATH"
 
 # Aliases
-alias ..="cd .."
+aliases_file="$XDG_CONFIG_HOME/sh/aliases.sh"
+if [ -f "$aliases_file" ]; then
+    source "$aliases_file"
+fi
 
-alias vim="nvim"
-alias vi="nvim"
-alias v="nvim"
+# Set terminal window title
+function precmd {
+    print -Pn "\e]0;Terminal %(1j,%j job%(2j|s|); ,)%~\e\\"
+}
 
-alias ls="lsd --group-dirs=first"
-alias ll="ls -l"
-alias la="ls -A"
-alias lla="ls -lA"
-alias tree="ls --tree"
-
-alias lf="lfcd"
-
-alias g="git"
-alias gs="git status"
-alias gl="git log"
-alias gc="git commit -S"
-alias gca="git commit -S --amend"
-alias ga="git add"
-alias ga.="git add ."
-alias gp="git push"
-alias gpl="git pull"
-alias gd="git diff"
-
-alias cat="bat"
-
-alias python="python3"
-alias py="python3"
-
-alias ping="prettyping --nolegend"
-
-alias youtube-dl="yt-dlp"
+# Set terminal process window title
+function preexec {
+    print -Pn "\e]0;${(q)1}\e\\"
+}
 
 # Aliases for color
 alias ip="ip -c"
