@@ -6,11 +6,17 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Zsh settings
+setopt autocd
+setopt globdots
+setopt correct
+
+# History
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-setopt SHARE_HISTORY
-setopt autocd
+setopt share_history
+setopt histignorespace
 
 # Clean home directory
 export GOPATH="$XDG_DATA_HOME/go"
